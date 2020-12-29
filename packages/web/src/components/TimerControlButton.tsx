@@ -1,20 +1,33 @@
-import { Link as ChakraLink, Button } from '@chakra-ui/react'
+import {  Button } from '@chakra-ui/react'
 
 import { Container } from './Container'
 
-export const TimerControlButton = ({start}:{start:boolean}) => (
-  <Container
-    flexDirection="row"
-    position="fixed"
-    bottom="0"
-    width="100%"
-    height="5rem"
-    maxWidth="48rem"
-    py={2}
-  >
+import { Timer } from "@mono-pomo/common";
+import { useState } from 'react';
 
-      <Button width="100%" height="100%" variant="solid" colorScheme="green">
-        {start ? "START" : "STOP"}
-      </Button>
-  </Container>
-)
+export const TimerControlButton = ({ timer }: { timer: Timer }) => { 
+    const showStart = !timer.isRunning;
+
+    const [counter, setCount]: [number, any] = useState(0);
+    
+    
+    return (
+        <Container
+            flexDirection="row"
+            position="fixed"
+            bottom="0"
+            width="100%"
+            height="5rem"
+            maxWidth="48rem"
+            py={2}
+        >
+
+            {/* <Button width="100%" height="100%" variant="solid" colorScheme="green" onClick={showStart? ()=> timer.startTimer() : ()=> timer.stopTimer()} >
+                {showStart? "START" : "STOP"}
+            </Button> */}
+            <Button onClick={() => setCount(counter + 1)}>Hi, add me daddy: { counter }</Button> 
+        </Container>
+    );
+}
+
+

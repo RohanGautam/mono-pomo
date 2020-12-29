@@ -6,6 +6,3 @@ export const TimerText = ({ displayTime }: { displayTime: string }) => (
   </Flex>
 )
 
-// TimerText.defaultProps = {
-//   title: 'with-chakra-ui-typescript',
-// }

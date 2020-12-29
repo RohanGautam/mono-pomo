@@ -7,15 +7,19 @@ import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import { Container } from '../components/Container'
 import { TimerControlButton } from '../components/TimerControlButton'
 
-import { appName } from "@mono-pomo/common";
+import { Timer } from "@mono-pomo/common";
 
-const Index = () => (
-  <Container height="100vh">
-    <TimerText displayTime="25:00" />
-    
-    <DarkModeSwitch />
-    <TimerControlButton start={true} />
-  </Container>
-)
+
+const timer : Timer = new Timer();
+const Index = () => {
+  return (
+    <Container height="100vh">
+      <TimerText displayTime="25:00" />
+
+      <DarkModeSwitch />
+      <TimerControlButton timer={timer} />
+    </Container>
+  )
+}
 
 export default Index
