@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.appName = exports.formatTime = exports.useEffectOnlyOnce = exports.useTimer = void 0;
-const react_1 = require("react");
+exports.timerMap = exports.appName = exports.formatTime = exports.useTimer = void 0;
 var react_timer_hook_1 = require("react-timer-hook");
 Object.defineProperty(exports, "useTimer", { enumerable: true, get: function () { return react_timer_hook_1.useTimer; } });
-exports.useEffectOnlyOnce = (func) => react_1.useEffect(func, []);
+// export const useEffectOnlyOnce = (func: EffectCallback) => useEffect(func, []);
 function formatTime(minutes, seconds) {
     let s_str = "" + seconds;
     let m_str = "" + minutes;
@@ -21,3 +20,8 @@ function appName() {
     return "pomo-lite";
 }
 exports.appName = appName;
+exports.timerMap = {
+    pomodoro: 25,
+    "short break": 5,
+    "long break": 15,
+};

@@ -1,52 +1,34 @@
-import { TimerText } from '../components/TimerText'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { Container } from '../components/Container'
-import { TimerControlButton } from '../components/TimerControlButton'
-import { TimerLengthPicker } from '../components/TimerLengthPicker'
+import { TimerText } from "../components/TimerText";
+import { DarkModeSwitch } from "../components/DarkModeSwitch";
+import { Container } from "../components/Container";
+import { TimerLengthPicker } from "../components/TimerLengthPicker";
 
-import { useTimer, useEffectOnlyOnce, formatTime, TimerType } from "@mono-pomo/common";
-
+import { TimerType, timerMap } from "@mono-pomo/common";
+import { useState } from "react";
+import { Timer } from "../components/Timer";
 
 const Index = () => {
   let time = new Date();
-  let expiryTimestamp=time.setMinutes(time.getMinutes()+1); // in 5 mins
+  let [expiryTime, setExpiryTime]: [number, any] = useState(
+    time.setMinutes(time.getMinutes() + 25)
+  );
 
-  const {
-    seconds,
-    minutes,
-    isRunning,
-    resume,
-    pause
-  } = useTimer({ expiryTimestamp: expiryTimestamp, onExpire: () => console.warn('onExpire called') });
-  
-  // this is run only once in the beginning
-  useEffectOnlyOnce(() => { pause(); });
-
-  const toggleTimer = () => {
-    isRunning ? pause() : resume();
-    // if (isRunning) {
-    //   console.log("PAUSE");      
-    //   pause();
-    // } else {
-    //   console.log("RESUME");
-    //   resume();
-    // }
-  }
   const onTimerTypeSelect = (value: TimerType) => {
-    console.log('Selected: ', value);
-    
-  }
-
+    console.log("Selected: ", value, "the time is ", timerMap[value]);
+    let time = new Date();
+    setExpiryTime(time.setMinutes(time.getMinutes() + timerMap[value]));
+  };
 
   return (
     <Container height="100vh">
-      <TimerLengthPicker onTimerTypeSelect={onTimerTypeSelect}></TimerLengthPicker>
-      <TimerText displayTime={formatTime(minutes, seconds)} />
-      
-      <DarkModeSwitch />
-      <TimerControlButton showStart={!isRunning} toggleTimerCallback={toggleTimer}/>
-    </Container>
-  )
-}
+      <TimerLengthPicker
+        onTimerTypeSelect={onTimerTypeSelect}
+      ></TimerLengthPicker>
+      <Timer expiryTime={expiryTime}></Timer>
 
-export default Index
+      <DarkModeSwitch />
+    </Container>
+  );
+};
+
+export default Index;
