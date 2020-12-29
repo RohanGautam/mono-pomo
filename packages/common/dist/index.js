@@ -1,4 +1,5 @@
 "use strict";
+// import { useState, useEffect } from "react";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Timer = exports.appName = void 0;
 function appName() {
@@ -18,7 +19,7 @@ class Timer {
         this.timerRunning = true;
     }
     stopTimer() {
-        console.log("Starting timer...");
+        console.log("Stopping timer...");
         this.timerRunning = false;
     }
     get isRunning() {
@@ -26,3 +27,5 @@ class Timer {
     }
 }
 exports.Timer = Timer;
+// export function useTimer() {
+// }

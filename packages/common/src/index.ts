@@ -1,3 +1,5 @@
+// import { useState, useEffect } from "react";
+
 export function appName() {
   return "pomo-lite";
 }
@@ -15,7 +17,7 @@ export class Timer {
     this.timerRunning = true;
   }
   stopTimer() {
-    console.log("Starting timer...");
+    console.log("Stopping timer...");
     this.timerRunning = false;
   }
 
@@ -23,3 +25,7 @@ export class Timer {
     return this.timerRunning;
   }
 }
+
+// export function useTimer() {
+
+// }

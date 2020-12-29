@@ -5,12 +5,7 @@ import { Container } from './Container'
 import { Timer } from "@mono-pomo/common";
 import { useState } from 'react';
 
-export const TimerControlButton = ({ timer }: { timer: Timer }) => { 
-    const showStart = !timer.isRunning;
-
-    const [counter, setCount]: [number, any] = useState(0);
-    
-    
+export const TimerControlButton = ({showStart, toggleTimerCallback }: {showStart:boolean, toggleTimerCallback:Function }) => { 
     return (
         <Container
             flexDirection="row"
@@ -22,10 +17,10 @@ export const TimerControlButton = ({ timer }: { timer: Timer }) => {
             py={2}
         >
 
-            {/* <Button width="100%" height="100%" variant="solid" colorScheme="green" onClick={showStart? ()=> timer.startTimer() : ()=> timer.stopTimer()} >
+            <Button width="100%" height="100%" variant="solid" colorScheme="green" onClick={()=>toggleTimerCallback()} >
                 {showStart? "START" : "STOP"}
-            </Button> */}
-            <Button onClick={() => setCount(counter + 1)}>Hi, add me daddy: { counter }</Button> 
+            </Button>
+            {/* <Button onClick={()=>callback()}>Hi, add me daddy: { counter }</Button>  */}
         </Container>
     );
 }
