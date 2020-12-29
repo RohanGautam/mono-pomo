@@ -1,31 +1,21 @@
-// import { useState, useEffect } from "react";
+import { EffectCallback, useEffect } from "react";
+
+export { useTimer } from "react-timer-hook";
+
+export const useEffectOnlyOnce = (func: EffectCallback) => useEffect(func, []);
+
+export function formatTime(minutes: number, seconds: number): string {
+  let s_str = "" + seconds;
+  let m_str = "" + minutes;
+  if (seconds < 10) {
+    s_str = "0" + s_str;
+  }
+  if (minutes < 10) {
+    m_str = "0" + m_str;
+  }
+  return `${m_str}:${s_str}`;
+}
 
 export function appName() {
   return "pomo-lite";
 }
-
-export class Timer {
-  private timerRunning: boolean = false;
-
-  // constructor() {
-  //   this.startTimer.bind(this);
-  //   this.stopTimer.bind(this);
-  // }
-
-  startTimer() {
-    console.log("Starting timer...");
-    this.timerRunning = true;
-  }
-  stopTimer() {
-    console.log("Stopping timer...");
-    this.timerRunning = false;
-  }
-
-  public get isRunning(): boolean {
-    return this.timerRunning;
-  }
-}
-
-// export function useTimer() {
-
-// }

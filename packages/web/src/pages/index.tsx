@@ -1,29 +1,42 @@
-import {
-  Text,
-} from '@chakra-ui/react'
-
 import { TimerText } from '../components/TimerText'
 import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import { Container } from '../components/Container'
 import { TimerControlButton } from '../components/TimerControlButton'
 
-import { Timer } from "@mono-pomo/common";
-import { useState } from 'react'
+import { useTimer, useEffectOnlyOnce, formatTime } from "@mono-pomo/common";
 
 
-const timer : Timer = new Timer();
 const Index = () => {
-  let [showStart, setShowStart]: [boolean, any] = useState(true);
+  let time = new Date();
+  let expiryTimestamp=time.setMinutes(time.getMinutes()+1); // in 5 mins
+
+  const {
+    seconds,
+    minutes,
+    isRunning,
+    resume,
+    pause
+  } = useTimer({ expiryTimestamp: expiryTimestamp, onExpire: () => console.warn('onExpire called') });
+  
+  // this is run only once in the beginning
+  useEffectOnlyOnce(() => { pause(); });
+
   const toggleTimer = () => {
-    timer.isRunning ? timer.stopTimer() : timer.startTimer();
-    setShowStart(!timer.isRunning);
+    isRunning ? pause() : resume();
+    // if (isRunning) {
+    //   console.log("PAUSE");      
+    //   pause();
+    // } else {
+    //   console.log("RESUME");
+    //   resume();
+    // }
   }
   return (
     <Container height="100vh">
-      <TimerText displayTime="25:00" />
-
+      <TimerText displayTime={formatTime(minutes, seconds)} />
+      
       <DarkModeSwitch />
-      <TimerControlButton showStart={showStart} toggleTimerCallback={toggleTimer}/>
+      <TimerControlButton showStart={!isRunning} toggleTimerCallback={toggleTimer}/>
     </Container>
   )
 }
