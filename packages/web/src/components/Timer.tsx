@@ -1,7 +1,7 @@
 import { TimerText } from "../components/TimerText";
 import { TimerControlButton } from "../components/TimerControlButton";
 import { useTimer, formatTime, useEffectOnlyOnce } from "@mono-pomo/common";
-import React, { useEffect } from "react";
+import React from "react";
 
 export const Timer = ({ expiryTime }: { expiryTime: number }) => {
   const { seconds, minutes, isRunning, resume, pause } = useTimer({
