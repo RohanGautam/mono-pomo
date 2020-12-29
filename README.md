@@ -1,4 +1,4 @@
 - [expo in yarn workspaces](https://medium.com/@mauriciord/how-to-insert-an-expo-project-in-a-monorepo-9005ee763c7e)
 - trouble shooting:
   - delete node_modules everywhere, then run `yarn`
-  - make sure the version of react is the same across the whole workspace. (in `packages/app` and `packages/web`)
+  - make sure the [version of react is the same across the whole workspace](https://github.com/expo/expo/issues/6287#issuecomment-612191455). (in `packages/app` and `packages/web`)
