@@ -24,7 +24,7 @@ const Index = () => {
       <TimerLengthPicker
         onTimerTypeSelect={onTimerTypeSelect}
       ></TimerLengthPicker>
-      <Timer expiryTime={expiryTime}></Timer>
+      <Timer expiryTime={expiryTime} key={expiryTime}></Timer>
 
       <DarkModeSwitch />
     </Container>

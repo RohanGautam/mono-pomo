@@ -2,3 +2,4 @@
 - trouble shooting:
   - delete node_modules everywhere, then run `yarn`
   - make sure the [version of react is the same across the whole workspace](https://github.com/expo/expo/issues/6287#issuecomment-612191455). (in `packages/app` and `packages/web`)
+- hen a component's key changes, react will [create a new instance](https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) rather than reuse the old one.

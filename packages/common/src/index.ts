@@ -1,6 +1,8 @@
+import { EffectCallback, useEffect } from "react";
+
 export { useTimer } from "react-timer-hook";
 
-// export const useEffectOnlyOnce = (func: EffectCallback) => useEffect(func, []);
+export const useEffectOnlyOnce = (func: EffectCallback) => useEffect(func, []);
 
 export function formatTime(minutes: number, seconds: number): string {
   let s_str = "" + seconds;

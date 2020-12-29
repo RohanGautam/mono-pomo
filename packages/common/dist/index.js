@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.timerMap = exports.appName = exports.formatTime = exports.useTimer = void 0;
+exports.timerMap = exports.appName = exports.formatTime = exports.useEffectOnlyOnce = exports.useTimer = void 0;
+const react_1 = require("react");
 var react_timer_hook_1 = require("react-timer-hook");
 Object.defineProperty(exports, "useTimer", { enumerable: true, get: function () { return react_timer_hook_1.useTimer; } });
-// export const useEffectOnlyOnce = (func: EffectCallback) => useEffect(func, []);
+exports.useEffectOnlyOnce = (func) => react_1.useEffect(func, []);
 function formatTime(minutes, seconds) {
     let s_str = "" + seconds;
     let m_str = "" + minutes;

@@ -1,25 +1,18 @@
 import { TimerText } from "../components/TimerText";
 import { TimerControlButton } from "../components/TimerControlButton";
-import { useTimer, formatTime } from "@mono-pomo/common";
+import { useTimer, formatTime, useEffectOnlyOnce } from "@mono-pomo/common";
 import React, { useEffect } from "react";
 
-// const forceUpdate = useForceUpdate();
 export const Timer = ({ expiryTime }: { expiryTime: number }) => {
-  //   console.log("got:", expiryTime);
-  const { seconds, minutes, isRunning, resume, pause, restart } = useTimer({
+  const { seconds, minutes, isRunning, resume, pause } = useTimer({
     expiryTimestamp: expiryTime,
     onExpire: () => console.warn("timer done!"),
   });
-
-  // this will run only when the prop `expiryTime` changes.
-  useEffect(() => {
-    restart(expiryTime);
-    // console.log("hmmmmm", isRunning);
-    if (isRunning) {
-      pause();
-    }
-    console.log("running", isRunning);
-  }, [expiryTime]);
+  //   this will run only once, when the widget is first created.
+  // it is created every time expirytime changes, as we are giving it a new key.
+  useEffectOnlyOnce(() => {
+    pause();
+  });
 
   const toggleTimer = () => {
     isRunning ? pause() : resume();
