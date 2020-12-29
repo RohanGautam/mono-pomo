@@ -19,3 +19,11 @@ export function formatTime(minutes: number, seconds: number): string {
 export function appName() {
   return "pomo-lite";
 }
+
+export type TimerType = "pomodoro" | "short break" | "long break";
+
+export const timerMap = {
+  pomodoro: 25,
+  "short break": 5,
+  "long break": 15,
+};

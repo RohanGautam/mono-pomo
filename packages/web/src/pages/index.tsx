@@ -2,8 +2,9 @@ import { TimerText } from '../components/TimerText'
 import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import { Container } from '../components/Container'
 import { TimerControlButton } from '../components/TimerControlButton'
+import { TimerLengthPicker } from '../components/TimerLengthPicker'
 
-import { useTimer, useEffectOnlyOnce, formatTime } from "@mono-pomo/common";
+import { useTimer, useEffectOnlyOnce, formatTime, TimerType } from "@mono-pomo/common";
 
 
 const Index = () => {
@@ -31,8 +32,15 @@ const Index = () => {
     //   resume();
     // }
   }
+  const onTimerTypeSelect = (value: TimerType) => {
+    console.log('Selected: ', value);
+    
+  }
+
+
   return (
     <Container height="100vh">
+      <TimerLengthPicker onTimerTypeSelect={onTimerTypeSelect}></TimerLengthPicker>
       <TimerText displayTime={formatTime(minutes, seconds)} />
       
       <DarkModeSwitch />
