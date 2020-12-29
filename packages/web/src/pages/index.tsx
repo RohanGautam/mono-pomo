@@ -5,7 +5,7 @@ import {
 import { TimerText } from '../components/TimerText'
 import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import { Container } from '../components/Container'
-import { CTA } from '../components/CTA'
+import { TimerControlButton } from '../components/TimerControlButton'
 
 import { appName } from "@mono-pomo/common";
 
@@ -14,7 +14,7 @@ const Index = () => (
     <TimerText displayTime="25:00" />
     
     <DarkModeSwitch />
-    <CTA />
+    <TimerControlButton start={true} />
   </Container>
 )
 
