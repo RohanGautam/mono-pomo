@@ -27,3 +27,9 @@ export const timerMap = {
   "short break": 1,
   "long break": 15,
 };
+
+export const timerEmojiMap = {
+  pomodoro: "⚡",
+  "short break": "😌",
+  "long break": "💆",
+};

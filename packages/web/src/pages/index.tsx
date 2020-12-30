@@ -2,7 +2,13 @@ import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { Container } from "../components/Container";
 import { TimerLengthPicker } from "../components/TimerLengthPicker";
 
-import { TimerType, timerMap, useTimer, formatTime } from "@mono-pomo/common";
+import {
+  TimerType,
+  timerMap,
+  useTimer,
+  formatTime,
+  timerEmojiMap,
+} from "@mono-pomo/common";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
@@ -107,6 +113,12 @@ const Index = () => {
   return (
     <Container height="100vh">
       <Head>
+        <link
+          rel="icon"
+          href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${
+            timerEmojiMap[timeInfo.timerType]
+          }</text></svg>`}
+        ></link>
         <title>
           {formatTime(minutes, seconds)} - {timeInfo.timerType}
         </title>

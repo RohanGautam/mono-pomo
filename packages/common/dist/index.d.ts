@@ -9,3 +9,8 @@ export declare const timerMap: {
     "short break": number;
     "long break": number;
 };
+export declare const timerEmojiMap: {
+    pomodoro: string;
+    "short break": string;
+    "long break": string;
+};

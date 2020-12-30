@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.timerMap = exports.appName = exports.formatTime = exports.useEffectOnlyOnce = exports.useTimer = void 0;
+exports.timerEmojiMap = exports.timerMap = exports.appName = exports.formatTime = exports.useEffectOnlyOnce = exports.useTimer = void 0;
 const react_1 = require("react");
 var react_timer_hook_1 = require("react-timer-hook");
 Object.defineProperty(exports, "useTimer", { enumerable: true, get: function () { return react_timer_hook_1.useTimer; } });
@@ -25,4 +25,9 @@ exports.timerMap = {
     pomodoro: 25,
     "short break": 1,
     "long break": 15,
+};
+exports.timerEmojiMap = {
+    pomodoro: "⚡",
+    "short break": "😌",
+    "long break": "💆",
 };
