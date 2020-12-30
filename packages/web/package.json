@@ -17,7 +17,8 @@
     "next": "latest",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-web-notification": "^0.8.0"
+    "react-web-notification": "^0.8.0",
+    "use-sound": "^2.0.1"
   },
   "devDependencies": {
     "@types/node": "^14.6.0",

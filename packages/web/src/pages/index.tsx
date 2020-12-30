@@ -6,8 +6,12 @@ import { TimerType, timerMap, useTimer, formatTime } from "@mono-pomo/common";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import useSound from "use-sound";
+
 import { TimerText } from "../components/TimerText";
 import { TimerControlButton } from "../components/TimerControlButton";
+
+const SOUND_PATH: string = "./badumtss.mp3";
 
 // to import in browser, and not  try to server side render the loading of this module
 const Notification = dynamic(() => import("react-web-notification"), {
@@ -57,6 +61,8 @@ const Index = () => {
         "'http://mobilusoss.github.io/react-web-notification/example/Notifications_button_24.png'",
     },
   });
+
+  const [playSound] = useSound(SOUND_PATH);
 
   const onTimerTypeSelect = (value: TimerType) => {
     console.log("Selected: ", value, "the time is ", timerMap[value]);
@@ -131,7 +137,7 @@ const Index = () => {
           console.error("[error] permissions not granted");
           setNotification({ ...notification, ignore: true });
         }}
-        onShow={() => console.log("showing...")}
+        onShow={() => playSound()}
         timeout={50000}
         title={notification.title}
         options={notification.options}
