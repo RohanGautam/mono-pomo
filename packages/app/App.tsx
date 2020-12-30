@@ -4,30 +4,12 @@ import { StyleSheet, Text, View } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 import { Button } from "react-native-paper";
 import { RadioButtons } from "./src/components/RadioButton";
-import {
-  formatTime,
-  timerEmojiMap,
-  timerMap,
-  TimerType,
-  useTimer,
-} from "@mono-pomo/common";
+import { formatTime, timerMap, TimerType, useTimer } from "@mono-pomo/common";
 
 interface TimeInfo {
   timerType: TimerType;
   expiryTime: number;
 }
-
-const data: { label: TimerType }[] = [
-  {
-    label: "pomodoro",
-  },
-  {
-    label: "short break",
-  },
-  {
-    label: "long break",
-  },
-];
 
 const initialTimerType: TimerType = "pomodoro";
 
