@@ -23,7 +23,7 @@ function appName() {
 exports.appName = appName;
 exports.timerMap = {
     pomodoro: 25,
-    "short break": 1,
+    "short break": 5,
     "long break": 15,
 };
 exports.timerEmojiMap = {
