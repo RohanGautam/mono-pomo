@@ -132,13 +132,9 @@ const Index = () => {
           setNotification({ ...notification, ignore: true });
         }}
         onShow={() => console.log("showing...")}
-        // onClick={this.handleNotificationOnClick.bind(this)}
-        // onClose={this.handleNotificationOnClose.bind(this)}
-        // onError={this.handleNotificationOnError.bind(this)}
         timeout={50000}
         title={notification.title}
         options={notification.options}
-        // swRegistration={this.props.swRegistration}
       />
 
       <DarkModeSwitch />
