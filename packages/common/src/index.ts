@@ -24,6 +24,6 @@ export type TimerType = "pomodoro" | "short break" | "long break";
 
 export const timerMap = {
   pomodoro: 25,
-  "short break": 5,
+  "short break": 1,
   "long break": 15,
 };
