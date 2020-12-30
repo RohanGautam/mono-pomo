@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.timerEmojiMap = exports.timerMap = exports.appName = exports.formatTime = exports.useEffectOnlyOnce = exports.useTimer = void 0;
+exports.timerEmojiMap = exports.timerMap = exports.formatTime = exports.useEffectOnlyOnce = exports.useTimer = void 0;
 const react_1 = require("react");
 var react_timer_hook_1 = require("react-timer-hook");
 Object.defineProperty(exports, "useTimer", { enumerable: true, get: function () { return react_timer_hook_1.useTimer; } });
@@ -17,10 +17,6 @@ function formatTime(minutes, seconds) {
     return `${m_str}:${s_str}`;
 }
 exports.formatTime = formatTime;
-function appName() {
-    return "pomo-lite";
-}
-exports.appName = appName;
 exports.timerMap = {
     pomodoro: 25,
     "short break": 5,
