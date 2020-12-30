@@ -7,16 +7,17 @@
     "start": "next start"
   },
   "dependencies": {
-    "@mono-pomo/common":"1.0.0",
     "@chakra-ui/icons": "^1.0.0",
     "@chakra-ui/react": "^1.0.0",
     "@chakra-ui/theme-tools": "1.0.0",
     "@emotion/react": "11.1.1",
     "@emotion/styled": "11.0.0",
+    "@mono-pomo/common": "1.0.0",
     "framer-motion": "^2.9.4",
     "next": "latest",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-web-notification": "^0.8.0"
   },
   "devDependencies": {
     "@types/node": "^14.6.0",

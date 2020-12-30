@@ -3592,6 +3592,11 @@ core-js-compat@^3.8.0:
     browserslist "^4.15.0"
     semver "7.0.0"
 
+core-js@3:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.8.1.tgz#f51523668ac8a294d1285c3b9db44025fda66d47"
+  integrity sha512-9Id2xHY1W7m8hCl8NkhQn5CufmF/WuR30BTRewvCXc1aZd3kMECwNZ69ndLbekKfakw9Rf2Xyc+QR6E7Gg+obg==
+
 core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
@@ -7866,6 +7871,13 @@ react-timer-mixin@^0.13.4:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
+
+react-web-notification@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-web-notification/-/react-web-notification-0.8.0.tgz#2dd9108f0c05534abacc26934ee684d4e2ce26b6"
+  integrity sha512-c9oJEBHyI8P6ymA6lOdUKeOiLH3XkcsvV3nNfMK0D0aXh47sTxoGZLQnw/qO32bm5CmS7k66FSwvQXnTaBoJ3g==
+  dependencies:
+    core-js "3"
 
 react@16.13.1:
   version "16.13.1"
