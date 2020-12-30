@@ -2,25 +2,17 @@ import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { Container } from "../components/Container";
 import { TimerLengthPicker } from "../components/TimerLengthPicker";
 
-import {
-  TimerType,
-  timerMap,
-  useTimer,
-  useEffectOnlyOnce,
-  formatTime,
-} from "@mono-pomo/common";
+import { TimerType, timerMap, useTimer, formatTime } from "@mono-pomo/common";
 import { useEffect, useState } from "react";
-// import { Timer } from "../components/Timer";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { Button } from "@chakra-ui/react";
 import { TimerText } from "../components/TimerText";
 import { TimerControlButton } from "../components/TimerControlButton";
 
+// to import in browser, and not  try to server side render the loading of this module
 const Notification = dynamic(() => import("react-web-notification"), {
   ssr: false,
 });
-// import Notification from "react-web-notification";
 
 interface NotificationData {
   ignore: boolean;
@@ -50,14 +42,10 @@ const Index = () => {
     onExpire: () => onTimerComplete(),
   });
 
+  // hook to pause the timer whenever the time info changes
   useEffect(() => {
-    console.log("running pause on time info change");
-    // restart(timeInfo.expiryTime);
     pause();
   }, [timeInfo]);
-  // useEffectOnlyOnce(() => {
-  //   pause();
-  // });
 
   // notification data hook
   let [notification, setNotification]: [NotificationData, any] = useState({
@@ -76,17 +64,17 @@ const Index = () => {
     const expiryTime = time.setMinutes(time.getMinutes() + timerMap[value]);
     // update the timer time
     restart(expiryTime);
+    // update the timeinfo
     setTimeInfo({
       timerType: value,
       expiryTime: expiryTime,
     });
-    // restart(timeInfo.expiryTime);
   };
-  const toggleTimer = () => {
-    console.log("toggle");
 
+  const toggleTimer = () => {
     isRunning ? pause() : resume();
   };
+
   const showNotification = () => {
     if (notification.ignore) {
       console.log("[notif], ignore set to true, ignoring notif request");
@@ -106,29 +94,20 @@ const Index = () => {
   const onTimerComplete = () => {
     console.log("timer complete");
     showNotification();
-    // reset to the same time type's beginning
+    // reset to the same (time type)'s beginning
     onTimerTypeSelect(timeInfo.timerType);
   };
 
   return (
     <Container height="100vh">
-      <TimerLengthPicker
-        onTimerTypeSelect={onTimerTypeSelect}
-      ></TimerLengthPicker>
-      {/* <Timer
-        timeInfo={timeInfo}
-        toggleTimer={toggleTimer}
-        isRunning={isRunning}
-        minutes={minutes}
-        seconds={seconds}
-        // pause={pause}
-        key={timeInfo.expiryTime}
-      ></Timer> */}
       <Head>
         <title>
           {formatTime(minutes, seconds)} - {timeInfo.timerType}
         </title>
       </Head>
+      <TimerLengthPicker
+        onTimerTypeSelect={onTimerTypeSelect}
+      ></TimerLengthPicker>
 
       <TimerText displayTime={formatTime(minutes, seconds)} />
       <TimerControlButton
