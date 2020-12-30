@@ -119,9 +119,7 @@ const Index = () => {
             timerEmojiMap[timeInfo.timerType]
           }</text></svg>`}
         ></link>
-        <title>
-          {formatTime(minutes, seconds)} - {timeInfo.timerType}
-        </title>
+        <title>{formatTime(minutes, seconds)}</title>
       </Head>
       <TimerLengthPicker
         onTimerTypeSelect={onTimerTypeSelect}
