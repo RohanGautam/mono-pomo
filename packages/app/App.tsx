@@ -85,8 +85,14 @@ export default function App() {
 
         {/* 
         // @ts-ignore */}
-        <Button mode="outlined" onPress={() => toggleTimer()}>
-          {!isRunning ? "START" : "STOP"}
+        <Button
+          mode="outlined"
+          onPress={() => toggleTimer()}
+          color={!isRunning ? "green" : "red"}
+        >
+          <Text style={styles.timerToggleText}>
+            {!isRunning ? "START" : "STOP"}
+          </Text>
         </Button>
         <StatusBar style="auto" />
       </View>
@@ -105,7 +111,7 @@ const styles = StyleSheet.create({
     fontSize: 80,
     textAlign: "center",
   },
-  timerToggleButton: {
-    fontSize: 50,
+  timerToggleText: {
+    fontSize: 30,
   },
 });

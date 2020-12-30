@@ -1,7 +1,7 @@
 import { timerEmojiMap, TimerType } from "@mono-pomo/common";
 import * as React from "react";
 import { View } from "react-native";
-import { RadioButton, Text } from "react-native-paper";
+import { RadioButton } from "react-native-paper";
 
 const timerTypes: TimerType[] = ["pomodoro", "short break", "long break"];
 
@@ -26,6 +26,7 @@ export const RadioButtons = ({
         <RadioButton.Item
           label={`${type} ${timerEmojiMap[type]}`}
           value={type}
+          color="green"
           key={type}
         />
       ))}
