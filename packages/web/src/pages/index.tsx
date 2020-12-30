@@ -105,7 +105,7 @@ const Index = () => {
 
   const onTimerComplete = () => {
     console.log("timer complete");
-    // showNotification();
+    showNotification();
     // reset to the same time type's beginning
     onTimerTypeSelect(timeInfo.timerType);
   };
