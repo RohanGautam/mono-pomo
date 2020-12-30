@@ -1,6 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Button, Alert } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { Provider as PaperProvider } from "react-native-paper";
+import { Button } from "react-native-paper";
+import { RadioButtons } from "./src/components/RadioButton";
 import {
   formatTime,
   timerEmojiMap,
@@ -13,6 +16,18 @@ interface TimeInfo {
   timerType: TimerType;
   expiryTime: number;
 }
+
+const data: { label: TimerType }[] = [
+  {
+    label: "pomodoro",
+  },
+  {
+    label: "short break",
+  },
+  {
+    label: "long break",
+  },
+];
 
 const initialTimerType: TimerType = "pomodoro";
 
@@ -63,14 +78,19 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.bigText}>{formatTime(minutes, seconds)}</Text>
-      <Button
-        title={!isRunning ? "START" : "STOP"}
-        onPress={() => toggleTimer()}
-      />
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+      <View style={styles.container}>
+        <RadioButtons onTimerTypeSelect={onTimerTypeSelect}></RadioButtons>
+        <Text style={styles.bigText}>{formatTime(minutes, seconds)}</Text>
+
+        {/* 
+        // @ts-ignore */}
+        <Button mode="outlined" onPress={() => toggleTimer()}>
+          {!isRunning ? "START" : "STOP"}
+        </Button>
+        <StatusBar style="auto" />
+      </View>
+    </PaperProvider>
   );
 }
 
@@ -78,11 +98,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "center",
   },
   bigText: {
-    fontSize: 50,
+    fontSize: 80,
+    textAlign: "center",
   },
   timerToggleButton: {
     fontSize: 50,
