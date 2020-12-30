@@ -34,8 +34,8 @@ export default function App() {
   // time info hook
   let [timeInfo, setTimeInfo]: [TimeInfo, any] = useState({
     timerType: initialTimerType,
-    // expiryTime: time.setMinutes(time.getMinutes() + timerMap[initialTimerType]),
-    expiryTime: time.setSeconds(time.getSeconds() + 5),
+    expiryTime: time.setMinutes(time.getMinutes() + timerMap[initialTimerType]),
+    // expiryTime: time.setSeconds(time.getSeconds() + 5),
   });
   //timer hook
   const { seconds, minutes, isRunning, resume, pause, restart } = useTimer({
