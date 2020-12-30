@@ -13,6 +13,7 @@
   "dependencies": {
     "@mono-pomo/common": "1.0.0",
     "expo": "^40.0.0",
+    "expo-notifications": "~0.8.2",
     "expo-status-bar": "~1.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",

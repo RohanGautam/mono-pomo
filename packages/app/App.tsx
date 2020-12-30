@@ -3,8 +3,24 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 import { Button } from "react-native-paper";
+import * as Notifications from "expo-notifications";
+import * as Permissions from "expo-permissions";
 import { RadioButtons } from "./src/components/RadioButton";
-import { formatTime, timerMap, TimerType, useTimer } from "@mono-pomo/common";
+import {
+  formatTime,
+  timerMap,
+  TimerType,
+  useEffectOnlyOnce,
+  useTimer,
+} from "@mono-pomo/common";
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
 
 interface TimeInfo {
   timerType: TimerType;
@@ -18,7 +34,8 @@ export default function App() {
   // time info hook
   let [timeInfo, setTimeInfo]: [TimeInfo, any] = useState({
     timerType: initialTimerType,
-    expiryTime: time.setMinutes(time.getMinutes() + timerMap[initialTimerType]),
+    // expiryTime: time.setMinutes(time.getMinutes() + timerMap[initialTimerType]),
+    expiryTime: time.setSeconds(time.getSeconds() + 5),
   });
   //timer hook
   const { seconds, minutes, isRunning, resume, pause, restart } = useTimer({
@@ -30,6 +47,16 @@ export default function App() {
   useEffect(() => {
     pause();
   }, [timeInfo]);
+  // useEffect(async() => {
+  //   pause();
+  // }, []);
+  useEffectOnlyOnce(() => {
+    console.log("here");
+
+    askPermissions().then((val) => {
+      console.log("got permissions: ", val);
+    });
+  });
 
   const onTimerTypeSelect = (value: TimerType) => {
     console.log("Selected: ", value, "the time is ", timerMap[value]);
@@ -48,10 +75,17 @@ export default function App() {
     isRunning ? pause() : resume();
   };
 
-  const showNotification = () => {
-    console.log("TODO: implement push notifications");
+  const showNotification = async () => {
+    let notifId: string = await Notifications.scheduleNotificationAsync({
+      content: { title: `${timeInfo.timerType} over!` },
+      trigger: {
+        date: new Date().getTime(),
+        repeats: false,
+        seconds: 0.1,
+      },
+    });
+    console.log(notifId);
   };
-
   const onTimerComplete = () => {
     console.log("timer complete");
     showNotification();
@@ -97,3 +131,18 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
 });
+
+const askPermissions = async () => {
+  const { status: existingStatus } = await Permissions.getAsync(
+    Permissions.NOTIFICATIONS
+  );
+  let finalStatus = existingStatus;
+  if (existingStatus !== "granted") {
+    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+    finalStatus = status;
+  }
+  if (finalStatus !== "granted") {
+    return false;
+  }
+  return true;
+};
